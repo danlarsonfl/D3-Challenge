@@ -55,29 +55,15 @@ var circlesGroup = chartGroup.selectAll("circle")
 .attr("fill", "green")
 .attr("opacity", ".5");
 
-chartGroup.selectAll("text")
+var textGroup = chartGroup.selectAll("li")
     .data(setData)
     .enter()
-    .append('div')
-    .append("text")
-    .attr('color', 'white')
-    .text(attr => {return attr.abbr});
-
-
-
-// .append('div')
-// .html(function(d) {
-//     return (`${d.abbr}`);
-// })
-// .attr('color','white');
-
-// circlesGroup.selectAll('circle')
-//     .data(setData)
-//     .append('div')
-//     .html(function(d) {
-//     return (`${d.abbr}`);
-//     });
-
+    .append('text')
+    .attr('class', 'stateText')
+    .attr('x', d => xLinearScale(d.age))
+    .attr('y', d => yLinearScale(d.smokes))
+    .attr('font-size',10)
+    .text(d => d.abbr);
 
 var toolTip = d3.tip()
     .attr("class", "tooltip")
